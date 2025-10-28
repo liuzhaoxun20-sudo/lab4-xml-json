@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book id="b001">
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <price>45.00</price>
+    </book>
+
+    <book id="b002">
+        <title>You Don't Know JS</title>
+        <author>Kyle Simpson</author>
+        <price>38.50</price>
+    </book>
+
+    <book id="b003">
+        <title>Introduction to Algorithms</title>
+        <author>Thomas H. Cormen</author>
+        <price>89.00</price>
+    </book>
+</catalog>
