@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "firstName": "Alice",
+      "lastName": "Wong",
+      "email": "alice.wong@example.com",
+      "dateOfBirth": "1998-04-12",
+      "address": {
+        "street": "123 Maple Street",
+        "city": "Auckland",
+        "state": "Auckland",
+        "zipCode": "1010"
+      },
+      "preferences": {
+        "theme": "dark",
+        "language": "en",
+        "notifications": "enabled",
+        "subscription": true
+      }
+    },
+    {
+      "firstName": "Brian",
+      "lastName": "Chen",
+      "email": "brian.chen@example.com",
+      "dateOfBirth": "2000-11-03",
+      "address": {
+        "street": "456 River Rd",
+        "city": "Shenzhen",
+        "state": "Guangdong",
+        "zipCode": "518000"
+      },
+      "preferences": {
+        "theme": "light",
+        "language": "zh",
+        "notifications": "mentions-only",
+        "subscription": false
+      }
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Lee",
+      "email": "sara.lee@example.com",
+      "dateOfBirth": "1995-07-29",
+      "address": {
+        "street": "789 Ocean Ave",
+        "city": "Singapore",
+        "state": "Singapore",
+        "zipCode": "039393"
+      },
+      "preferences": {
+        "theme": "dark",
+        "language": "en",
+        "notifications": "disabled",
+        "subscription": true
+      }
+    }
+  ]
+}
