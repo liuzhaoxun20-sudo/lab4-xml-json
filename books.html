@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Book Catalogue</title>
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; padding: 20px; }
+        h1 { margin-bottom: 0.5em; }
+        .book-list { display: grid; gap: 12px; }
+        .book-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .book-title { font-weight: bold; font-size: 1.1em; }
+        .book-meta { font-size: 0.9em; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Book Catalogue (from XML)</h1>
+    <div id="books" class="book-list"></div>
+
+    <script>
+        // 1. 读取本地的 book.xml
+        fetch('book.xml')
+            .then(response => response.text())
+            .then(xmlText => {
+                // 2. 把纯文本解析成 XML DOM
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+                // 3. 取出所有 <book> 节点
+                const bookNodes = xmlDoc.getElementsByTagName('book');
+
+                // 4. 遍历并插入到网页
+                const container = document.getElementById('books');
+
+                for (let i = 0; i < bookNodes.length; i++) {
+                    const book = bookNodes[i];
+                    const id = book.getAttribute('id');
+                    const title = book.getElementsByTagName('title')[0].textContent;
+                    const author = book.getElementsByTagName('author')[0].textContent;
+                    const price = book.getElementsByTagName('price')[0].textContent;
+
+                    // 生成一块卡片
+                    const card = document.createElement('div');
+                    card.className = 'book-card';
+                    card.innerHTML = `
+                        <div class="book-title">${title}</div>
+                        <div class="book-meta">ID: ${id}</div>
+                        <div class="book-meta">Author: ${author}</div>
+                        <div class="book-meta">Price: $${price}</div>
+                    `;
+                    container.appendChild(card);
+                }
+            })
+            .catch(err => {
+                console.error('Error loading XML:', err);
+            });
+    </script>
+</body>
+</html>
