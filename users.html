@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>User Profiles</title>
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; padding: 20px; }
+        h1 { margin-bottom: 0.5em; }
+        .user-list { display: grid; gap: 12px; }
+        .user-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .user-name { font-weight: bold; font-size: 1.1em; }
+        .user-meta { font-size: 0.9em; color: #555; }
+        .section-title { font-size: 0.95em; font-weight: 600; margin-top: 8px; }
+        .sub-block { margin-left: 12px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>User Profiles (from JSON)</h1>
+    <div id="users" class="user-list"></div>
+
+    <script>
+        // 1. 读取本地 userProfiles.json
+        fetch('userProfiles.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('users');
+
+                data.users.forEach(user => {
+                    const card = document.createElement('div');
+                    card.className = 'user-card';
+
+                    card.innerHTML = `
+                        <div class="user-name">
+                            ${user.firstName} ${user.lastName}
+                        </div>
+                        <div class="user-meta">Email: ${user.email}</div>
+                        <div class="user-meta">DOB: ${user.dateOfBirth}</div>
+
+                        <div class="section-title">Address</div>
+                        <div class="sub-block">
+                            ${user.address.street}, ${user.address.city}, 
+                            ${user.address.state} ${user.address.zipCode}
+                        </div>
+
+                        <div class="section-title">Preferences</div>
+                        <div class="sub-block">
+                            Theme: ${user.preferences.theme}<br/>
+                            Language: ${user.preferences.language}<br/>
+                            Notifications: ${user.preferences.notifications}<br/>
+                            Subscribed: ${user.preferences.subscription}
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.error('Error loading JSON:', err);
+            });
+    </script>
+</body>
+</html>
